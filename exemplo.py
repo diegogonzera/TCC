@@ -25,12 +25,16 @@ treinoRotulo = []
 testeImagem = []
 testeRotulo = []
 
+contpessoa = 1
+
 '''4 Para cada pessoa nos diretorios, imprima a pasta delas'''
 for pessoa in content:
     diretorioPessoas = diretorio + pessoa + '/'
     if not os.path.isdir(diretorioPessoas): continue
 
-    #print(diretorioPessoas)
+    print("Operando pessoa", contpessoa)
+    contpessoa += 1
+    # print("Operando pessoa", diretorioPessoas)
 
     contentPessoas = os.listdir(diretorioPessoas)
     contentPessoas = natural_sort(contentPessoas)
@@ -67,15 +71,31 @@ for pessoa in content:
         contador = contador + 1
 
 '''objetos dos classificadores'''
-# classKNN = svm.SVC(kernel='rbf', probability=True)
+
 
 classKNN = KNeighborsClassifier(n_neighbors = 1)
 #manda o classificador aprender
 '''treinamento'''
+print("Resultados do KNN")
 classKNN.fit(treinoImagem, treinoRotulo)
 '''classificacao'''
 predicao = classKNN.predict(testeImagem)
-print(predicao)
+#print(predicao)
 
 acuracia = classKNN.score(testeImagem, testeRotulo)
 print(acuracia*100)
+
+'''RANDOM FOREST'''
+print("Resultados do Random Forest")
+from sklearn.ensemble import RandomForestClassifier
+classRN = RandomForestClassifier()
+# classRN = RandomForestClassifier(n_estimators=40, max_depth=2, random_state=0)
+# utilizando o RN com os parametros padrao, deu *** porcentagem
+classRN.fit(treinoImagem, treinoRotulo)
+predicao = classRN.predict(testeImagem)
+print(predicao)
+
+acuracia = classRN.score(testeImagem, testeRotulo)
+print(acuracia*100)
+
+#não precisa renomear as imagens, só jogar dentro da pasta pessoas

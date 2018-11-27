@@ -1,0 +1,18 @@
+4 imagens teste pra cada pessoa
+
+20 pessoas serão analisadas
+
+
+80 imagens no total
+
+pastas 
+001
+002
+003
+005
+
+as quatro primeiras amostras de cada enumerado, ex:
+
+1_1, 1_2, 1_3, 1_4
+2_1, 2_2, 2_3, 2_4
+..................

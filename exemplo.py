@@ -90,7 +90,7 @@ for pessoa in content:
 
 print("\n"+"Resultados do Random Forest"+"\n")
 from sklearn.ensemble import RandomForestClassifier
-classRN = RandomForestClassifier(n_estimators=2000, criterion="entropy", verbose=1, oob_score = True, n_jobs = -1, max_depth=2, random_state=0)
+classRN = RandomForestClassifier(n_estimators=100, criterion="entropy", verbose=1, oob_score = True, n_jobs = -1, random_state=0)
 # classRN = RandomForestClassifier(n_estimators=40, max_depth=2, random_state=0)
 # utilizando o RN com os parametros padrao, deu *** porcentagem
 classRN.fit(treinoImagem, treinoRotulo)
@@ -99,6 +99,6 @@ print(predicaoRN)
 
 acuraciaRN = classRN.score(testeImagem, testeRotulo)*100
 print("\n"+"{:.1f}".format(acuraciaRN))
-
-
 #não precisa renomear as imagens, só jogar dentro da pasta pessoas
+
+'''tempo de execuçao'''

@@ -73,29 +73,32 @@ for pessoa in content:
 '''objetos dos classificadores'''
 
 
-classKNN = KNeighborsClassifier(n_neighbors = 1)
-#manda o classificador aprender
-'''treinamento'''
-print("Resultados do KNN")
-classKNN.fit(treinoImagem, treinoRotulo)
-'''classificacao'''
-predicao = classKNN.predict(testeImagem)
-#print(predicao)
-
-acuracia = classKNN.score(testeImagem, testeRotulo)
-print(acuracia*100)
+# classKNN = KNeighborsClassifier(n_neighbors = 1)
+# #manda o classificador aprender
+# '''treinamento'''
+#
+# print("\n"+"Resultados do KNN"+"\n")
+# classKNN.fit(treinoImagem, treinoRotulo)
+# '''classificacao'''
+# predicaoKNN = classKNN.predict(testeImagem)
+# print(predicaoKNN)
+#
+# acuraciaKNN = classKNN.score(testeImagem, testeRotulo)*100
+# print("\n"+"{:.1f}".format(acuraciaKNN)+"\n")
 
 '''RANDOM FOREST'''
-print("Resultados do Random Forest")
+
+print("\n"+"Resultados do Random Forest"+"\n")
 from sklearn.ensemble import RandomForestClassifier
-classRN = RandomForestClassifier()
+classRN = RandomForestClassifier(n_estimators=2000, criterion="entropy", verbose=1, oob_score = True, n_jobs = -1, max_depth=2, random_state=0)
 # classRN = RandomForestClassifier(n_estimators=40, max_depth=2, random_state=0)
 # utilizando o RN com os parametros padrao, deu *** porcentagem
 classRN.fit(treinoImagem, treinoRotulo)
-predicao = classRN.predict(testeImagem)
-print(predicao)
+predicaoRN = classRN.predict(testeImagem)
+print(predicaoRN)
 
-acuracia = classRN.score(testeImagem, testeRotulo)
-print(acuracia*100)
+acuraciaRN = classRN.score(testeImagem, testeRotulo)*100
+print("\n"+"{:.1f}".format(acuraciaRN))
+
 
 #não precisa renomear as imagens, só jogar dentro da pasta pessoas
